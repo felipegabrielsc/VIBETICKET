@@ -1,0 +1,821 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+
+/* ========================
+   CONTAINER GERAL
+======================== */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+/* ========================
+   CONTEÚDO CENTRALIZADO
+======================== */
+.login-content {
+  display: flex;
+  width: 80%;
+  max-width: 900px;
+  margin: 70px 0;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================
+   ÁREA DA LOGO
+======================== */
+.logo-section {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0969fb;
+}
+
+.logo-image {
+  width: 80%;
+  max-width: 200px;
+  object-fit: contain;
+}
+
+.logo-imageEmail {
+  width: 250px;
+  height: auto;
+}
+
+/* ========================
+   ÁREA DO FORMULÁRIO
+======================== */
+.form-section {
+  width: 60%;
+  padding: 20px;
+}
+
+.form-section p,
+.form-section Button {
+  text-align: center;
+}
+
+.form-section h2 {
+  text-align: center;
+}
+
+.login-title {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  margin-bottom: -20px;
+  text-align: left; /* Títulos alinhados à esquerda */
+  padding-left: 5px;
+}
+
+.form-section label {
+  font-size: 15px;
+}
+
+input {
+  margin-bottom: 7px;
+}
+
+.login-recuperar-senha {
+  display: flex;
+  flex-direction: row;
+  margin-top: -20px;
+}
+
+/* ========================
+   ERROS
+======================== */
+
+.login-container-error {
+  display: flex;
+  margin: -15px 0 5px 5px;
+  height: 18px;
+}
+
+/* Esconde o container quando não tem conteúdo */
+.login-container-error:empty {
+  display: none;
+}
+
+/* Estilos específicos para mensagens de erro e hint */
+.login-container-error .error {
+  font-size: 12px;
+  color: red;
+  margin: 0;
+}
+
+.login-container-error .password-hint {
+  font-size: 12px;
+  color: #888;
+  margin: 0;
+}
+
+
+/* ========================
+   LINKS E TERMOS
+======================== */
+.radio-container {
+  margin-bottom: 10px;
+}
+
+.termos-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.checkbox-ajustado {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.link,
+.login-crie-conta {
+  color: #0969fb;
+  text-decoration: none;
+}
+
+.crie-conta {
+  font-weight: bold;
+}
+
+.login-crie-conta:hover {
+  color: rgb(206, 51, 24);
+  opacity: 0.6;
+}
+
+
+.login-recuperar-senha {
+  display: flex;
+  justify-content: right;
+}
+
+/* ========================
+   TÍTULOS E TEXTOS
+======================== */
+.login-bemvido {
+  font-size: 28px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 25px;
+  color: #0969fb;
+}
+
+.ou {
+  color: #757575;
+  margin-top: 10px;
+}
+
+/* ========================
+   LOGIN SOCIAL
+======================== */
+.social-login {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+/* Alertas genéricos */
+.alerta {
+  position: fixed;
+  right: 20px;
+  padding: 15px 25px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideInFadeOut 2s ease forwards;
+  z-index: 1000;
+}
+
+.check {
+  margin-right: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Alertas específicos */
+.login-alerta-google {
+  top: 20px;
+  background-color: #e6f4ea;
+  color: #2e7d32;
+}
+
+.login-alerta-google .check {
+  color: #2e7d32;
+}
+
+.login-alerta-facebook {
+  top: 70px;
+  background-color: #e8f0fe;
+  color: #1a73e8;
+}
+
+.login-alerta-facebook .check {
+  color: #1a73e8;
+}
+
+.alerta-erro-google {
+  top: 130px;
+  background-color: #fbe9e7;
+  color: #d32f2f;
+}
+
+.alerta-erro-facebook {
+  top: 180px;
+  background-color: #fbe9e7;
+  color: #d32f2f;
+}
+
+/* ========================
+   MENSAGEM DE SUCESSO
+======================== */
+.mensagem-sucesso {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  border: 1px solid #badbcc;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-top: 16px;
+  text-align: center;
+  font-weight: 500;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* ========================
+   ANIMAÇÕES
+======================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFadeOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================
+   DICA SENHA
+======================== */
+.password-hint {
+  font-size: 12px;
+  color: #888;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: left;
+  padding-left: 5px;
+}
+
+/* ========================
+   LOADER / SPINNER
+======================== */
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #0969fb;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ========================
+   RESPONSIVIDADE - VERSÃO ORIGINAL (WEB)
+======================== */
+@media (max-width: 768px) {
+  .login-content {
+    flex-direction: column;
+    width: 90%;
+  }
+  .logo-section {
+    width: 100%;
+    padding: 20px;
+  }
+  .logo-image {
+    max-width: 150px;
+  }
+  .form-section {
+    width: 100%;
+    padding: 20px;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .social-login {
+    gap: 10px;
+  }
+}
+
+/* ========================
+   MELHORIAS ESPECÍFICAS PARA MOBILE
+======================== */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 10px;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background-color: #fff;
+  }
+
+  .login-content {
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .logo-section {
+    width: 100%;
+    padding: 30px 20px;
+    min-height: 150px;
+  }
+
+  .logo-image {
+    max-width: 180px;
+  }
+
+  .form-section {
+    width: 100%;
+    padding: 25px 20px;
+  }
+
+  .login-bemvido {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  /* TÍTULOS ALINHADOS À ESQUERDA NO MOBILE */
+  .login-title {
+    font-size: 15px;
+    margin-bottom: -15px;
+    text-align: left;
+    padding-left: 5px;
+  }
+
+  /* BOTÕES SOCIAIS LADO A LADO NO MOBILE */
+  .social-login {
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+  }
+
+  .login-recuperar-senha {
+    margin-top: -15px;
+    margin-bottom: 10px;
+  }
+
+  .login-container-error {
+    margin: -12px 0 5px 5px;
+    height: 16px;
+  }
+
+  .login-container-error .error,
+  .login-container-error .password-hint {
+    font-size: 11px;
+  }
+
+  /* MELHORIAS PARA A PARTE DOS TERMOS NO MOBILE */
+  .radio-container {
+    margin: 15px 0;
+  }
+
+  .termos-label {
+    font-size: 13px;
+    flex-wrap: nowrap;
+    line-height: 1.4;
+  }
+
+  .termos-label .link {
+    white-space: nowrap;
+  }
+
+  /* Melhorias para inputs em mobile */
+  input {
+    font-size: 16px; /* Previne zoom no iOS */
+    padding: 12px;
+  }
+}
+
+/* ========================
+   MELHORIAS EXTRA PARA TELAS MUITO PEQUENAS
+======================== */
+@media (max-width: 360px) {
+  .form-section {
+    padding: 20px 15px;
+  }
+
+  .login-bemvido {
+    font-size: 22px;
+  }
+
+  .logo-section {
+    padding: 25px 15px;
+    min-height: 120px;
+  }
+
+  .logo-image {
+    max-width: 150px;
+  }
+
+  /* Ajuste fino para os botões sociais em telas muito pequenas */
+  .social-login {
+    gap: 10px;
+  }
+}
+
+/* ========================
+   AJUSTES PARA O MODAL DE TERMOS NO MOBILE
+======================== */
+@media (max-width: 768px) {
+  .login-modal {
+    padding: 10px;
+  }
+
+  .login-modal-content {
+    width: 95%;
+    max-height: 80vh;
+    padding: 20px 15px;
+  }
+
+  .close-button {
+    top: 10px;
+    right: 10px;
+  }
+}
+
+/* ========================
+   ESTADO DE AGUARDANDO VERIFICAÇÃO (MOBILE)
+======================== */
+@media (max-width: 768px) {
+  .login-container .form-section {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  
+  .login-container .form-section p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+/* ========================
+   MODAL DE REDEFINIÇÃO DE SENHA
+======================== */
+.login-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.login-modal {
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 380px;
+  animation: login-modal-appear 0.3s ease-out;
+  overflow: hidden;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes login-modal-appear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.login-modal-content {
+  padding: 30px 25px 25px;
+  text-align: center;
+  position: relative;
+}
+
+.login-modal-icon {
+  width: 70px;
+  height: 70px;
+  background: #10b981;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: white;
+  font-size: 28px;
+  animation: login-modal-icon-bounce 0.5s ease-out;
+}
+
+/* Spinner para o estado de carregamento */
+.login-modal-spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes login-modal-icon-bounce {
+  0% {
+    transform: scale(0);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.login-modal-title {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.login-modal-message {
+  margin: 0;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.login-modal-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #e2e8f0;
+}
+
+.login-modal-progress-bar {
+  height: 100%;
+  background: #10b981;
+  animation: login-modal-progress 3s linear forwards;
+}
+
+@keyframes login-modal-progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .login-modal {
+    top: 10px;
+    width: 95%;
+    max-width: 350px;
+  }
+  
+  .login-modal-content {
+    padding: 25px 20px 20px;
+  }
+  
+  .login-modal-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+  
+  .login-modal-spinner {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .login-modal-title {
+    font-size: 18px;
+  }
+  
+  .login-modal-message {
+    font-size: 14px;
+  }
+}
+
+/* ========================
+   VOLTAR PARA INÍCIO
+======================== */
+.login-voltarParaInicio {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 35px;
+  left: 45px;
+}
+
+/* ========================================= */
+/* ELEMENTOS DE TEXTO                        */
+/* ========================================= */
+.login-voltarParaInicio-text {
+  color: #0969fb;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+/* ========================================= */
+/* EFEITOS DE HOVER E ANIMAÇÕES              */
+/* ========================================= */
+.login-voltarParaInicio::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 55%;
+  width: 0;
+  height: 2px;
+  background-color: #0969fb;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.login-voltarParaInicio:hover {
+  color: #004ec2;
+}
+
+.login-voltarParaInicio:hover::after {
+  width: calc(100% - 24px);
+}
+
+.login-voltarParaInicio:hover .login-voltarParaInicio-text {
+  color: #0056b3;
+}
+
+.login-voltarParaInicio-icon {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  color: #0969fb;
+}
+
+.login-voltarParaInicio:hover .login-voltarParaInicio-icon {
+  transform: translateX(-2px);
+}
+
+.login-voltarParaInicio:focus {
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ========================================= */
+/* RESPONSIVIDADE                            */
+/* ========================================= */
+/* --- O QUE VOCÊ JÁ TEM (mantido exatamente como está) --- */
+@media (max-width: 480px) {
+  .login-voltarParaInicio {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    left: 15px;
+    top: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 0;
+  }
+
+  .login-voltarParaInicio-text {
+    display: none;
+  }
+
+  .login-voltarParaInicio-icon {
+    color: #fff;
+    font-size: 20px;
+  }
+
+  .login-voltarParaInicio:hover::after {
+    width: calc(100% - 16px);
+  }
+}
+
+
+/* --- TABLET PEQUENO (480px – 768px) --- */
+@media (min-width: 481px) and (max-width: 768px) {
+  .login-voltarParaInicio {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    left: 15px;
+    top: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 0;
+  }
+
+  .login-voltarParaInicio-text {
+    display: none;
+  }
+
+  .login-voltarParaInicio-icon {
+    color: #fff;
+    font-size: 20px;
+  }
+
+  .login-voltarParaInicio:hover::after {
+    width: calc(100% - 16px);
+  }
+}
+
+
+/* --- TABLET GRANDE OU NOTEBOOK PEQUENO (769px – 1024px) --- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .login-voltarParaInicio {
+    display: flex;
+    position: absolute;
+    margin-bottom: 20px;
+    border-width: 2px;
+    left: 25px;
+  }
+
+  .login-voltarParaInicio-icon {
+    font-size: 26px;
+  }
+}

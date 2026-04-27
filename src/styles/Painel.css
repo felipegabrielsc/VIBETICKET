@@ -1,0 +1,233 @@
+/* Estilos gerais */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #fff;
+}
+
+.painel-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.painel-sidebar {
+  width: 250px;
+  background-color: #0969fb;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.painel-container-logo {
+  margin-bottom: 30px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.painel-logo {
+  max-width: 180px;
+}
+
+/* Main Content */
+.painel-main {
+  flex-grow: 1;
+  padding: 30px;
+  background-color: #f4f7f9;
+}
+
+/* Main Header */
+.painel-main-header {
+  background-color: white;
+  padding: 20px 30px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.painel-main-header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 24px;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-right {
+  text-align: right;
+  font-size: 14px;
+}
+
+.header-right strong {
+  display: block;
+  color: #333;
+}
+
+.header-right p {
+  margin: 0;
+  color: #777;
+}
+
+/* Tabs do Header */
+.tab-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  transition: color 0.3s, border-bottom 0.3s;
+  border-radius: 4px;
+}
+
+.tab-button:hover {
+  color: #3498db;
+}
+
+.tab-button.active {
+  color: #3498db;
+  border-bottom: 2px solid #3498db;
+  background-color: #f0f0f0;
+}
+
+/* Grid de Eventos */
+.painel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+/* -----------------------------gerenciar carrossel e logout--------------------------------- */
+
+.btn-gerenciar-carrossel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 20px;
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  text-decoration: none; /* Para usar com <Link> */
+}
+
+.btn-gerenciar-carrossel:hover {
+  background-color: #002c66; /* Cor de hover para manter o estilo */
+}
+
+.btn-gerenciar-carrossel p {
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .painel-wrapper {
+    flex-direction: column;
+  }
+
+  .painel-sidebar {
+    width: 100%;
+    padding: 15px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .painel-container-logo {
+    margin-bottom: 0;
+  }
+
+  .painel-logo {
+    max-width: 120px;
+  }
+
+  .painel-sidebar>div {
+    display: flex;
+    gap: 15px;
+  }
+
+  .btn-gerenciar-carrossel {
+    width: auto;
+    padding: 10px 15px;
+  }
+
+  .btn-gerenciar-carrossel p {
+    display: none;
+  }
+
+  .painel-main {
+    padding: 15px;
+  }
+
+  .painel-main-header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .header-center {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tab-button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .header-right {
+    text-align: center;
+  }
+
+  .painel-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+/* Para telas menores que 768px */
+@media (max-width: 768px) {
+  .painel-sidebar {
+    padding: 10px;
+  }
+
+  .painel-logo {
+    max-width: 100px;
+  }
+
+  .btn-gerenciar-carrossel {
+    padding: 8px 12px;
+  }
+
+  .header-center {
+    gap: 5px;
+  }
+
+  .tab-button {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
+
+/* Melhorias de toque para dispositivos móveis */
+@media (hover: none) and (pointer: coarse) {
+
+  .tab-button,
+  .btn-gerenciar-carrossel {
+    min-height: 44px;
+    /* Tamanho mínimo para toque */
+  }
+}

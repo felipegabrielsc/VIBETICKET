@@ -1,0 +1,987 @@
+/* ============ VARIÁVEIS CSS ============ */
+:root {
+  --primary: #0969fb;
+  --primary-dark: #0756cc;
+  --success: #10b981;
+  --success-dark: #059669;
+  --error: #ef4444;
+  --alert: #ffc107;
+  --bg: #f9fbfd;
+  --text: #333;
+  --muted: #64748b;
+  --card: #ffffff;
+  --input-bg: #f8fafc;
+  --border: #e2e8f0;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --transicao-rapida: all 0.2s ease;
+}
+
+/* ============ CONFIGURAÇÕES GERAIS ============ */
+body {
+  background: var(--card);
+}
+
+/* ============ LAYOUT PRINCIPAL ============ */
+.perfil-container {
+  max-width: 1200px;
+  margin: 120px auto 0 auto;
+  padding: 30px 20px;
+  color: var(--text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  background-color: #fff;
+}
+
+.perfil-header {
+  margin-bottom: 30px;
+  text-align: center;
+  width: 100%;
+}
+
+.perfil-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.perfil-header p {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+/* ============ LAYOUT DE CONTEÚDO ============ */
+.perfil-connection-container {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.perfil-content {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.perfil-left {
+  flex: 1;
+  min-width: 350px;
+  max-width: 400px;
+}
+
+.perfil-right {
+  flex: 2;
+  min-width: 0;
+}
+
+/* ============ CARDS ============ */
+.perfil-card {
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 25px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.perfil-card.full-width {
+  width: 100%;
+  max-width: none;
+  flex-basis: 100%;
+}
+
+/* ============ SEÇÃO DE AVATAR ============ */
+.perfil-avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.perfil-avatar-wrapper {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.perfil-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #f1f5f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-avatar-edit {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: var(--primary);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.perfil-avatar-edit:hover {
+  background: var(--primary-dark);
+  transform: scale(1.1);
+}
+
+.perfil-email {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* ============ HEADERS SECUNDÁRIOS ============ */
+.perfil-header-secondary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.perfil-header-secondary h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.perfil-tab-icon {
+  font-size: 20px;
+  color: var(--primary);
+}
+
+.perfil-tab-content {
+  padding: 5px;
+}
+
+/* ============ FORMULÁRIOS E INPUTS ============ */
+.perfil-form-group {
+  margin-bottom: 20px;
+}
+
+.perfil-input-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.perfil-input-icon {
+  margin-right: 10px;
+  color: var(--muted);
+}
+
+.perfil-input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--input-bg);
+  transition: .2s;
+}
+
+.perfil-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(9, 105, 251, .2);
+  background: #fff;
+}
+
+.perfil-input:disabled {
+  background: #f1f5f9;
+  color: var(--muted);
+}
+
+/* ============ GRID DE FORMULÁRIOS ============ */
+.perfil-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+/* ============ RADIO BUTTONS CPF/CNPJ ============ */
+.perfil-radio-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.perfil-radio-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.perfil-radio-pill input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.perfil-radio-pill span {
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: #334155;
+  font-size: 14px;
+  transition: .2s;
+}
+
+.perfil-radio-pill input:checked+span {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(9, 105, 251, .15);
+}
+
+/* ============ BOTÕES ============ */
+.perfil-btn-primary {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.perfil-btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.perfil-btn-save {
+  background: var(--success);
+}
+
+.perfil-btn-save:hover {
+  background: var(--success-dark);
+}
+
+/* ============ NOTIFICAÇÕES E STATUS ============ */
+.notification {
+  padding: 15px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  box-shadow: var(--shadow);
+  border-left: 5px solid;
+}
+
+.notification--success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-color: #4caf50;
+}
+
+.notification--error {
+  background-color: #ffebee;
+  color: #c62828;
+  border-color: #f44336;
+}
+
+.notification--alert {
+  background-color: #fff8e1;
+  color: #856404;
+  border-color: var(--alert);
+}
+
+/* ============ STATUS DE CONEXÃO ============ */
+.perfil-connection-status {
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.perfil-connection-status.connected {
+  background-color: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  color: #2e7d32;
+}
+
+.perfil-connection-status.connected p {
+  font-weight: bold;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.perfil-connection-status.connected small {
+  font-weight: normal;
+}
+
+.perfil-connection-status.disconnected {
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+}
+
+.perfil-connection-status.disconnected p {
+  margin: 0 0 15px 0;
+  color: var(--muted);
+}
+
+.perfil-connection-status.disconnected .perfil-btn-primary {
+  width: auto;
+  align-self: flex-start;
+  padding: 10px 20px;
+}
+
+.btn-desvincular {
+  background: none;
+  border: 1px solid #d9534f;
+  color: #d9534f;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8em;
+  font-weight: bold;
+  margin-top: 15px;
+  transition: all 0.2s ease;
+}
+
+.btn-desvincular:hover {
+  background-color: #d9534f;
+  color: white;
+}
+
+/* ============ MENSAGENS DE ERRO ============ */
+.perfil-input-error {
+  border-color: var(--error) !important;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1) !important;
+}
+
+.perfil-error-message {
+  color: var(--error);
+  font-size: 0.875rem;
+  margin-top: 5px;
+}
+
+/* ============ ESTADOS DE CARREGAMENTO ============ */
+.perfil-loading,
+.perfil-error {
+  text-align: center;
+  padding: 40px;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.perfil-error {
+  color: var(--error);
+}
+
+/* ============ MODAIS ============ */
+.perfil-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.perfil-modal {
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 380px;
+  animation: perfil-modal-appear 0.3s ease-out;
+  overflow: hidden;
+}
+
+.perfil-modal-content {
+  padding: 30px 25px 25px;
+  text-align: center;
+  position: relative;
+}
+
+/* Modal de Sucesso */
+.perfil-modal-icon {
+  width: 70px;
+  height: 70px;
+  background: var(--success);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: white;
+  font-size: 28px;
+  animation: perfil-modal-icon-bounce 0.5s ease-out;
+}
+
+.perfil-modal-title {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.perfil-modal-message {
+  margin: 0;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.perfil-modal-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #e2e8f0;
+}
+
+.perfil-modal-progress-bar {
+  height: 100%;
+  background: var(--success);
+  animation: perfil-modal-progress 3s linear forwards;
+}
+
+/* Modal de Alerta/Desconexão */
+.perfil-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.perfil-modal {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 450px;
+  overflow: hidden;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.perfil-modal-content {
+  padding: 2rem;
+  text-align: center;
+}
+
+.perfil-modal-icon-alert {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background-color: #fff1f2;
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.perfil-modal-footer {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+/* Botões da Modal */
+.perfil-btn-secondary,
+.perfil-btn-danger {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  flex: 1;
+}
+
+.perfil-btn-secondary {
+  background-color: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.perfil-btn-secondary:hover {
+  background-color: #e5e7eb;
+}
+
+.perfil-btn-danger {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.perfil-btn-danger:hover {
+  background-color: #dc2626;
+}
+
+/* ============ SEÇÃO MEUS INGRESSOS ============ */
+.perfil-meus-ingressos {
+  margin-top: 20px;
+  display: none;
+}
+
+.perfil-ingressos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.perfil-ingressos-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.perfil-ingressos-content {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.perfil-ingressos-icon {
+  font-size: 48px;
+  color: var(--muted);
+  margin-bottom: 15px;
+}
+
+.perfil-ingressos-message {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ============ ANIMAÇÕES ============ */
+@keyframes perfil-modal-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes perfil-modal-icon-bounce {
+  0% {
+    transform: scale(0);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes perfil-modal-progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ============ RESPONSIVIDADE ============ */
+
+/* Tablets e dispositivos médios */
+@media (max-width: 768px) {
+  .perfil-container {
+    margin-top: 100px;
+    padding: 16px;
+    max-width: 100%;
+  }
+
+  .perfil-header {
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .perfil-header h1 {
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 4px;
+    margin-top: 25px;
+    display: flex;
+    align-items: end;
+  }
+
+  .perfil-header p {
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .perfil-connection-container {
+    margin-bottom: 20px;
+  }
+
+  .perfil-content {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .perfil-left,
+  .perfil-right {
+    min-width: auto;
+    max-width: 100%;
+    flex: none;
+    width: 100%;
+  }
+
+  .perfil-card {
+    padding: 20px;
+    margin-bottom: 16px;
+    border-radius: 16px;
+  }
+
+  .perfil-avatar-section {
+    margin-bottom: 20px;
+  }
+
+  .perfil-avatar {
+    width: 100px;
+    height: 100px;
+    border-width: 3px;
+  }
+
+  .perfil-avatar-edit {
+    width: 32px;
+    height: 32px;
+    bottom: 8px;
+    right: 8px;
+  }
+
+  .perfil-email {
+    font-size: 13px;
+  }
+
+  .perfil-header-secondary {
+    margin-bottom: 16px;
+  }
+
+  .perfil-header-secondary h3 {
+    font-size: 18px;
+  }
+
+  .perfil-tab-icon {
+    font-size: 18px;
+  }
+
+  .perfil-form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .full-width {
+    grid-column: span 1;
+  }
+
+  .perfil-form-group {
+    margin-bottom: 16px;
+  }
+
+  .perfil-input-label {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .perfil-input {
+    padding: 14px 12px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  .perfil-radio-group {
+    gap: 8px;
+  }
+
+  .perfil-radio-pill span {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .perfil-btn-primary {
+    padding: 14px;
+    font-size: 15px;
+    border-radius: 10px;
+    min-height: 48px;
+  }
+
+  /* Notificações mobile */
+  .notification {
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  .perfil-connection-status {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .perfil-connection-status.connected p {
+    font-size: 14px;
+  }
+
+  .perfil-connection-status.disconnected .perfil-btn-primary {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .btn-desvincular {
+    width: 100%;
+    padding: 10px;
+    margin-top: 12px;
+    font-size: 14px;
+  }
+
+  /* Modal mobile */
+  .perfil-modal {
+    width: 95%;
+    max-width: 95%;
+    border-radius: 20px;
+  }
+
+  .perfil-modal-content {
+    padding: 1.5rem;
+  }
+
+  .perfil-modal-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  .perfil-modal-title {
+    font-size: 1.25rem;
+  }
+
+  .perfil-modal-message {
+    font-size: 0.9rem;
+  }
+
+  .perfil-modal-footer {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .perfil-btn-secondary,
+  .perfil-btn-danger {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* SEÇÃO MEUS INGRESSOS - MOBILE */
+  .perfil-meus-ingressos {
+    display: block;
+    margin-top: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .perfil-ingressos-header {
+    padding: 20px 20px 15px 20px;
+    margin-bottom: 0;
+  }
+  
+  .perfil-ingressos-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  
+  .perfil-ingressos-content {
+    padding: 50px 30px;
+  }
+  
+  .perfil-ingressos-icon {
+    font-size: 56px;
+    margin-bottom: 20px;
+    opacity: 0.7;
+  }
+  
+  .perfil-ingressos-message {
+    font-size: 17px;
+    color: #666;
+    font-weight: 500;
+  }
+}
+
+/* Dispositivos móveis pequenos */
+@media (max-width: 480px) {
+  .perfil-container {
+    margin-top: 110px;
+  }
+
+  .perfil-header h1 {
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+  }
+
+  .perfil-header p {
+    display: none;
+  }
+
+  .perfil-card {
+    margin-top: 50px;
+  }
+
+  .perfil-card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .perfil-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .perfil-input {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .perfil-btn-primary {
+    padding: 12px;
+    font-size: 14px;
+    min-height: 44px;
+  }
+
+  .perfil-radio-pill span {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .notification {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  /* Ajustes Meus Ingressos para telas pequenas */
+  .perfil-ingressos-header h2 {
+    font-size: 20px;
+  }
+  
+  .perfil-ingressos-content {
+    padding: 40px 20px;
+  }
+  
+  .perfil-ingressos-icon {
+    font-size: 48px;
+  }
+  
+  .perfil-ingressos-message {
+    font-size: 16px;
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 360px) {
+  .perfil-container {
+    margin-top: 80px;
+    padding: 10px;
+  }
+
+  .perfil-card {
+    padding: 14px;
+  }
+
+  .perfil-header h1 {
+    font-size: 20px;
+  }
+
+  .perfil-header-secondary h3 {
+    font-size: 16px;
+  }
+
+  .perfil-input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  /* Ajustes Meus Ingressos para telas muito pequenas */
+  .perfil-ingressos-header {
+    padding: 15px 15px 10px 15px;
+  }
+  
+  .perfil-ingressos-header h2 {
+    font-size: 18px;
+  }
+  
+  .perfil-ingressos-content {
+    padding: 30px 15px;
+  }
+  
+  .perfil-ingressos-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+  }
+  
+  .perfil-ingressos-message {
+    font-size: 15px;
+  }
+}

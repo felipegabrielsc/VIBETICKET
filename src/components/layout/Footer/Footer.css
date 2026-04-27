@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ========================================= */
+/* CONTAINER PRINCIPAL                       */
+/* ========================================= */
+.footer-container {
+  width: 100%;
+  background: #0969fb;
+  color: white;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ========================================= */
+/* WRAPPER PARA CONTEÚDO CENTRALIZADO        */
+/* ========================================= */
+.footer-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ========================================= */
+/* CABEÇALHO DO FOOTER                       */
+/* ========================================= */
+.footer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  width: 140px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+  transform: scale(1.05);
+}
+
+.footer-social-container {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-social-link {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+}
+
+.footer-social-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
+/* ========================================= */
+/* GRID DE SEÇÕES                            */
+/* ========================================= */
+.footer-sections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+/* ========================================= */
+/* SEÇÕES INDIVIDUAIS                        */
+/* ========================================= */
+.footer-section {
+  margin-bottom: 20px;
+}
+
+.footer-section-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-section-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section-item {
+  margin-bottom: 12px;
+}
+
+/* ========================================= */
+/* LINKS                                     */
+/* ========================================= */
+.footer-link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+  transform: translateX(5px);
+}
+
+.footer-link-highlight {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* ========================================= */
+/* MÉTODOS DE PAGAMENTO                      */
+/* ========================================= */
+.footer-payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.footer-payment-icon {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.footer-payment-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.payment-icons-container {
+  display: flex;
+  gap: 10px;
+}
+
+.payment-icon {
+  width: 50px;
+  height: auto;
+}
+
+/* ========================================= */
+/* NEWSLETTER                                */
+/* ========================================= */
+.footer-newsletter {
+  margin-top: 25px;
+}
+
+.footer-newsletter-title {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.footer-newsletter-input {
+  padding: 10px 12px;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-newsletter-button {
+  padding: 10px 15px;
+  background-color: #ff5a5f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+.footer-newsletter-button:hover {
+  background-color: #e04a50;
+}
+
+/* ========================================= */
+/* RODAPÉ INFERIOR                           */
+/* ========================================= */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-copyright {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 10px;
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-bottom-link {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-bottom-link:hover {
+  color: #ffffff;
+}
+
+.footer-bottom-separator {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ========================================= */
+/* RESPONSIVIDADE                            */
+/* ========================================= */
+@media (max-width: 900px) {
+  .footer-header {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .footer-social-container {
+    margin-top: 15px;
+  }
+  
+  .footer-sections-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .footer-newsletter {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-sections-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-newsletter {
+    grid-column: span 1;
+  }
+  
+  .footer-social-container {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}

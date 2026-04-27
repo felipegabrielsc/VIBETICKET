@@ -1,0 +1,238 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+.container {
+  width: 100%;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  margin-top: 20px;
+  padding: 0 5%;
+  flex: 1;
+}
+
+.shows-section {
+  margin-bottom: 40px;
+}
+
+.title-show {
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: bold;
+  margin: 30px 0 15px;
+  color: #333;
+}
+
+.home-duvidas {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 30px;
+  height: 60px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.duvida-texto {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width 0.4s ease, opacity 0.4s ease;
+  font-weight: 500;
+}
+
+.home-duvidas:hover {
+  justify-content: flex-start;
+  background-color: #0069d9;
+}
+
+.home-duvidas:hover .duvida-texto {
+  max-width: 150px;
+  opacity: 1;
+}
+
+/* Responsividade para tablets */
+@media (max-width: 1024px) {
+  .main {
+    padding: 0 3%;
+  }
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+  .main {
+    padding: 0 15px;
+    margin-top: 15px;
+  }
+  
+  .title-show {
+    margin: 20px 0 10px;
+    font-size: 20px;
+  }
+  
+  .shows-section {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-show {
+    font-size: 18px;
+  }
+}
+
+/* Estilos do Banner */
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #42a5f5;
+  padding: 12px 16px;
+  border-radius: 7px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 30px auto;
+  box-sizing: border-box;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.banner-image {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.banner-text {
+  flex: 1;
+}
+
+.banner-title {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.banner-subtitle {
+  color: white;
+  font-size: 17px;
+  opacity: 0.8;
+}
+
+.vw-plugin-top-wrapper {
+    z-index: 9999 !important;
+}
+
+.banner {
+  width: 100%;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  overflow: hidden;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.banner-image {
+  width: 60px;
+  height: 60px;
+}
+
+.banner-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.banner-subtitle {
+  font-size: 14px;
+  margin-top: 5px;
+  opacity: 0.9;
+}
+
+/* Responsividade do Banner */
+@media (max-width: 768px) {
+  .banner {
+    width: 95%;
+    margin: 20px auto;
+    padding: 10px;
+  }
+  
+  .banner-image {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .banner-content {
+    gap: 8px;
+  }
+  
+  .banner-title {
+    font-size: 18px;
+  }
+  
+  .banner-subtitle {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .banner-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .banner-image {
+    margin-bottom: 10px;
+  }
+  
+  .banner-title {
+    font-size: 16px;
+  }
+  
+  .banner-subtitle {
+    font-size: 14px;
+  }
+}

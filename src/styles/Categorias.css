@@ -1,0 +1,634 @@
+/* ============================ */
+/* VARIÁVEIS E CONFIGURAÇÕES GERAIS */
+/* ============================ */
+:root {
+  --cor-primaria: #0969fb;
+  --cor-texto: #1a1a1a;
+  --cor-texto-secundario: #666;
+  --cor-borda: #e0e0e0;
+  --cor-fundo: #f8f9fa;
+  --cor-destaque: #e8f4ff;
+  --sombra-suave: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --sombra-destaque: 0 8px 25px rgba(0, 0, 0, 0.2);
+  --border-radius: 12px;
+}
+
+/* ============================ */
+/* LAYOUT PRINCIPAL */
+/* ============================ */
+.categorias-container {
+  max-width: 1400px;
+  margin: 40px auto;
+  margin-top: 120px;
+  padding: 0 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.categorias-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.categorias-titulo {
+  font-size: 2rem;
+  color: var(--cor-texto);
+  font-weight: 700;
+}
+
+.categorias-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+/* ============================ */
+/* FILTROS LATERAIS - DESKTOP */
+/* ============================ */
+.categorias-filtros-desktop {
+  display: none;
+  background-color: var(--cor-fundo);
+  padding: 24px;
+  border-radius: var(--border-radius);
+  height: fit-content;
+}
+
+.categorias-filtros-titulo {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--cor-borda);
+  color: #333;
+  font-weight: 600;
+}
+
+.categorias-filtro-estados {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.categorias-filtro-estado {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  border: 2px solid var(--cor-borda);
+}
+
+.categorias-filtro-estado:hover {
+  background-color: #e9ecef;
+  border-color: #b0b0b0;
+}
+
+.categorias-filtro-estado-selecionado {
+  background-color: var(--cor-destaque);
+  border-color: var(--cor-primaria);
+}
+
+.categorias-filtro-estado-imagem {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.categorias-filtro-estado-nome {
+  color: #333;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.categorias-filtro-estado-selecionado .categorias-filtro-estado-nome {
+  color: var(--cor-primaria);
+  font-weight: 600;
+}
+
+.categorias-filtro-botoes {
+  margin-top: 24px;
+  border-top: 1px solid var(--cor-borda);
+  padding-top: 24px;
+}
+
+.categorias-filtro-btn-limpar {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.categorias-filtro-btn-limpar:hover {
+  background-color: #f1f1f1;
+  border-color: #bbb;
+}
+
+/* ============================ */
+/* FILTROS MOBILE - CORRIGIDOS */
+/* ============================ */
+.categorias-btn-filtros {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background-color: var(--cor-primaria);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.categorias-filtros-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.categorias-filtros-conteudo {
+  background-color: white;
+  padding: 24px;
+  border-radius: var(--border-radius);
+  width: 100%;
+  max-width: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Header dos filtros mobile - CORRIGIDO */
+.categorias-filtros-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--cor-borda);
+}
+
+.categorias-filtros-header h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--cor-texto);
+  margin: 0;
+}
+
+.categorias-filtros-fechar {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--cor-texto-secundario);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+}
+
+.categorias-filtros-fechar:hover {
+  background-color: #f5f5f5;
+  color: var(--cor-texto);
+}
+
+.categorias-filtros-fechar svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+/* Body dos filtros mobile */
+.categorias-filtros-body {
+  margin-bottom: 20px;
+}
+
+.categorias-filtros-titulo-mobile {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--cor-texto);
+  margin: 0 0 16px 0;
+  padding: 0;
+}
+
+.categorias-filtro-estados-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+.categorias-filtro-estado-mobile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid var(--cor-borda);
+  background-color: white;
+  width: 100%;
+  text-align: left;
+}
+
+.categorias-filtro-estado-mobile:hover {
+  background-color: #f8f9fa;
+  border-color: #ccc;
+}
+
+.categorias-filtro-estado-selecionado-mobile {
+  background-color: var(--cor-destaque);
+  border-color: var(--cor-primaria);
+}
+
+.categorias-filtro-estado-imagem-mobile {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.categorias-filtro-estado-nome-mobile {
+  color: #333;
+  font-weight: 500;
+  font-size: 1rem;
+  flex: 1;
+}
+
+.categorias-filtro-estado-selecionado-mobile .categorias-filtro-estado-nome-mobile {
+  color: var(--cor-primaria);
+  font-weight: 600;
+}
+
+.categorias-filtro-estado-check {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--cor-borda);
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.categorias-filtro-estado-selecionado-mobile .categorias-filtro-estado-check {
+  background-color: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  position: relative;
+}
+
+.categorias-filtro-estado-selecionado-mobile .categorias-filtro-estado-check::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+/* Footer dos filtros mobile - CORRIGIDO */
+.categorias-filtros-footer {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 2px solid var(--cor-borda);
+}
+
+.categorias-filtro-btn-limpar-mobile {
+  flex: 1;
+  padding: 14px 16px;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  color: var(--cor-texto);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.categorias-filtro-btn-limpar-mobile:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.categorias-filtro-btn-aplicar-mobile {
+  flex: 1;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--cor-primaria);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.categorias-filtro-btn-aplicar-mobile:hover {
+  background-color: #085cdb;
+  transform: translateY(-1px);
+}
+
+/* ============================ */
+/* LISTA DE EVENTOS E CARDS */
+/* ============================ */
+.categorias-lista-eventos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.categorias-card-evento {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--sombra-suave);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 300px;
+  height: 310px;
+  cursor: pointer;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: none;
+  color: inherit;
+}
+
+.categorias-card-evento:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-destaque);
+}
+
+.categorias-card-imagem-wrapper {
+  position: relative;
+  height: 160px;
+  flex-shrink: 0;
+}
+
+.categorias-card-imagem {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.categorias-card-data {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: linear-gradient(135deg, #3060ff, #4c1bff);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.categorias-card-conteudo {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.categorias-card-data-completa {
+  font-size: 0.75em;
+  font-weight: 600;
+  color: #6e8efb;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: block;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
+
+.categorias-card-titulo {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.categorias-card-info {
+  margin-top: auto;
+}
+
+.categorias-card-local {
+  font-size: 0.85em;
+  color: #718096;
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================ */
+/* MENSAGENS DE FEEDBACK */
+/* ============================ */
+.categorias-resultados .categorias-lista-titulo {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.categorias-resultados .categorias-lista-descricao {
+  font-size: 1rem;
+  color: var(--cor-texto-secundario);
+}
+
+/* ============================ */
+/* ESTILOS OBSOLETOS (REMOVER) */
+/* ============================ */
+.evento-card-placeholder {
+  display: none;
+}
+
+.lista-de-eventos {
+  display: none;
+}
+
+/* ============================ */
+/* RESPONSIVIDADE */
+/* ============================ */
+
+/* Telas maiores (tablets e desktop) */
+@media (min-width: 768px) {
+  .categorias-layout {
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+  }
+
+  .categorias-btn-filtros {
+    display: none;
+  }
+
+  .categorias-filtros-desktop {
+    display: block;
+  }
+}
+
+/* Tablets e telas menores */
+@media (max-width: 767px) {
+  .categorias-titulo {
+    font-size: 1.75rem;
+  }
+}
+
+/* Tablets menores */
+@media (max-width: 768px) {
+  .categorias-lista-eventos {
+    gap: 15px;
+    padding: 15px 0;
+  }
+  
+  .categorias-card-evento {
+    width: 280px;
+    height: 300px;
+  }
+
+  .categorias-card-imagem-wrapper {
+    height: 150px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .categorias-lista-eventos {
+    gap: 10px;
+    padding: 10px 0;
+  }
+  
+  .categorias-card-evento {
+    width: 260px;
+    height: 290px;
+  }
+
+  .categorias-card-imagem-wrapper {
+    height: 140px;
+  }
+
+  .categorias-card-conteudo {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .categorias-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  
+  .categorias-btn-filtros {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Ajuste adicional para telas extremamente pequenas */
+@media (max-width: 360px) {
+  .categorias-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+  }
+  
+  .categorias-btn-filtros {
+    padding: 12px 16px;
+    font-size: 1rem;
+  }
+
+  .categorias-filtros-conteudo {
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  .categorias-filtros-titulo-mobile {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+  
+  .categorias-filtro-estado-mobile {
+    padding: 12px;
+  }
+  
+  .categorias-filtro-estado-imagem-mobile {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .categorias-filtro-estado-nome-mobile {
+    font-size: 0.9rem;
+  }
+  
+  .categorias-filtros-footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .categorias-filtro-btn-limpar-mobile,
+  .categorias-filtro-btn-aplicar-mobile {
+    padding: 12px 14px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Garantir que o conteúdo não ultrapasse os limites */
+.categorias-filtros-body {
+  overflow: hidden;
+}
+
+/* Estados de carregamento */
+.categorias-carregando,
+.categorias-erro,
+.categorias-carregando-filtros {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--cor-texto-secundario);
+  font-size: 1.1rem;
+}
+
+.categorias-carregando-filtros {
+  padding: 20px;
+}

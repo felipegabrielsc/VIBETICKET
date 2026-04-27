@@ -1,0 +1,1436 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GLOBAIS E VARIÁVEIS
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* --- ESTILOS PARA A ETAPA DE DOAÇÃO --- */
+
+.container-doacao-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.btn-abrir-doacao {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 25px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-abrir-doacao:hover {
+  background-color: #2a793d;
+}
+
+.info-doacao-selecionada {
+  background-color: #e9f5ff;
+  border: 1px solid #b3d7ff;
+  border-radius: 8px;
+  padding: 15px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.info-doacao-selecionada p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #004085;
+}
+
+.info-doacao-selecionada span {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.info-doacao-selecionada button {
+  background: none;
+  border: 1px solid #ff4d4d;
+  color: #ff4d4d;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.info-doacao-selecionada button:hover {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+
+/* --- ESTILOS DO MODAL DE DOAÇÃO --- */
+.doacao-modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.doacao-modal-content h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.valores-predefinidos {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.valores-predefinidos button {
+  background-color: #f0f0f0;
+  border: 2px solid #ddd;
+  padding: 15px 25px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.valores-predefinidos button:hover {
+  border-color: #007bff;
+  background-color: #e9f5ff;
+}
+
+.valores-predefinidos button.ativo {
+  border-color: #007bff;
+  background-color: #007bff;
+  color: white;
+}
+
+.campo-valor-personalizado label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.campo-valor-personalizado input {
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+  padding: 12px;
+  font-size: 1.2rem;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.doacao-modal-actions {
+  margin-top: 30px;
+  text-align: right;
+}
+
+.btn-finalizar-doacao {
+  background-color: #28a745;
+  color: white;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-finalizar-doacao:hover {
+  background-color: #218838;
+}
+
+/* maps */
+
+.tutorial-mapa {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 5px;
+  line-height: 1.4;
+  white-space: pre-line;
+  /* Isso garante que as quebras de linha funcionem */
+}
+
+.termos-container {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background-color: #f9f9fb;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-top: 4px;
+  width: 18px;
+  height: 18px;
+  accent-color: #4A90E2;
+  /* cor azul moderna */
+  cursor: pointer;
+}
+
+.checkbox-container label {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+.checkbox-container a {
+  color: #4A90E2;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.checkbox-container a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+/* teste */
+:root {
+  --cor-primaria: #007bff;
+  --cor-sucesso: #28a745;
+  --cor-perigo: #dc3545;
+  --cor-aviso: #ff0707;
+  --cor-cinza-escuro: #333;
+  --cor-cinza-claro: #666;
+  --cor-fundo: #f8f9fa;
+  --cor-fundo-campos: #f9f9f9;
+  --cor-borda: #ccc;
+  --cor-branca: #fff;
+}
+
+
+/* ==========================================================================
+      CABEÇALHO
+      ========================================================================== */
+.criar-evento-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background-color: var(--cor-primaria);
+  border-bottom: 1px solid #e9ecef;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  height: 120px;
+}
+
+.criar-juntos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.duvidas-header-logo {
+  height: 150px;
+  /* Ajustado para melhor caber na altura do header */
+  width: auto;
+}
+
+.duvidas-hr {
+  width: 1px;
+  border: none;
+  height: 60px;
+  background-color: var(--cor-branca);
+  margin: 0 20px;
+}
+
+.criar-titulo {
+  font-size: 2em;
+  color: var(--cor-fundo);
+}
+
+.criar-dubtitle {
+  font-weight: 500;
+  color: var(--cor-branca);
+}
+
+.criar-header-botoes {
+  display: flex;
+  align-items: center;
+  /* Alinha verticalmente o botão de sair e o timer */
+  gap: 15px;
+}
+
+.btn-salvar-sair {
+  background-color: var(--cor-perigo);
+  color: var(--cor-branca);
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-salvar-sair:hover {
+  background-color: #c82333;
+}
+
+/* Novo estilo para o timer de cooldown no header */
+.header-cooldown-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: var(--cor-aviso);
+  color: var(--cor-cinza-escuro);
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+
+/* ==========================================================================
+      MODAL DE CONFIRMAÇÃO
+      ========================================================================== */
+.criar-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.criar-modal-content {
+  background: var(--cor-branca);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+}
+
+.criar-modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: var(--cor-cinza-escuro);
+}
+
+.criar-modal-content p {
+  color: var(--cor-cinza-claro);
+  margin-bottom: 25px;
+}
+
+.criar-modal-botoes {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.criar-modal-botoes button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.criar-modal-botoes button:hover {
+  transform: scale(1.05);
+}
+
+.criar-modal-btn-cancelar {
+  background-color: #f0f0f0;
+  color: var(--cor-cinza-escuro);
+  border: 1px solid var(--cor-borda);
+}
+
+.criar-modal-btn-confirmar {
+  background-color: var(--cor-perigo);
+  color: var(--cor-branca);
+}
+
+
+/* ==========================================================================
+      ESTRUTURA PRINCIPAL DO FORMULÁRIO
+      ========================================================================== */
+.criar-form {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.informacoes-basicas-container {
+  width: 100%;
+  background-color: var(--cor-branca);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  /* Separar seções */
+}
+
+.criar-Informaçao h2 {
+  font-size: 1.8em;
+  color: var(--cor-primaria);
+  margin-bottom: 25px;
+  font-weight: bold;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+/* ==========================================================================
+      CAMPOS DE FORMULÁRIO GERAIS
+      ========================================================================== */
+.campo {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: var(--cor-cinza-escuro);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.campo label svg {
+  cursor: help;
+}
+
+.campo input[type="text"],
+.campo input[type="url"],
+.campo input[type="number"],
+.campo input[type="date"],
+.campo input[type="time"],
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  background-color: var(--cor-fundo-campos);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  border-color: var(--cor-primaria);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.input-readonly {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+.campos-horizontais {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.campos-horizontais .campo {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 0;
+}
+
+
+/* ==========================================================================
+      VALIDAÇÃO E ERROS
+      ========================================================================== */
+.erro-asterisco {
+  color: var(--cor-perigo);
+  font-weight: bold;
+}
+
+.erro-campo {
+  border-color: var(--cor-perigo) !important;
+}
+
+.erro-campo::placeholder {
+  color: var(--cor-perigo);
+  opacity: 0.7;
+}
+
+.mensagem-erro {
+  color: var(--cor-perigo);
+  font-size: 0.85em;
+  margin-top: 6px;
+  display: block;
+}
+
+.mensagem-info {
+  color: var(--cor-primaria);
+  font-size: 0.85em;
+  margin-top: 6px;
+  display: block;
+}
+
+
+/* ==========================================================================
+      ETAPA 1: UPLOAD DE IMAGEM
+      ========================================================================== */
+.upload-imagem {
+  border: 2px dashed var(--cor-borda);
+  padding: 30px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.upload-imagem:hover {
+  border-color: var(--cor-primaria);
+  background-color: #f5faff;
+}
+
+.upload-imagem p {
+  color: var(--cor-cinza-claro);
+}
+
+.input-file {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.image-preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.image-preview {
+  max-width: 100%;
+  max-height: 250px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-name {
+  font-size: 0.9em;
+  color: var(--cor-cinza-escuro);
+  word-break: break-all;
+}
+
+.remove-image-button {
+  background-color: var(--cor-perigo);
+  color: var(--cor-branca);
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.remove-image-button:hover {
+  background-color: #c82333;
+}
+
+
+/* ==========================================================================
+      ETAPA 2: DESCRIÇÃO
+      ========================================================================== */
+.criar-descricao {
+  min-height: 150px;
+  resize: vertical;
+}
+
+
+/* ==========================================================================
+      ETAPA 5: INGRESSOS
+      ========================================================================== */
+.container-ingressos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.lado-esquerdo,
+.lado-direito {
+  flex: 1;
+  min-width: 300px;
+}
+
+.lado-esquerdo .select {
+  width: auto;
+  padding: 10px;
+}
+
+
+/* ==========================================================================
+      ETAPA 6: DOAÇÃO
+      ========================================================================== */
+.criar-doacao-title {
+  font-size: 1.8em;
+  font-weight: 700;
+  color: var(--cor-primaria);
+  margin-bottom: 1rem;
+}
+
+.criar-doacao-descricao {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--cor-cinza-claro);
+  background-color: var(--cor-fundo-campos);
+  padding: 1rem 1.2rem;
+  border-left: 4px solid var(--cor-sucesso);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.botoes-doacao {
+  display: flex;
+  gap: 15px;
+  margin: 25px 0;
+}
+
+.botoes-doacao button {
+  padding: 10px 25px;
+  border: 2px solid var(--cor-sucesso);
+  background-color: var(--cor-branca);
+  color: var(--cor-sucesso);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.botoes-doacao button:hover {
+  background-color: #eafaf1;
+}
+
+.botoes-doacao button.ativo {
+  background-color: var(--cor-sucesso);
+  color: var(--cor-branca);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
+}
+
+.campo-doacao {
+  margin-top: 20px;
+}
+
+
+/* ==========================================================================
+      NAVEGAÇÃO ENTRE ETAPAS
+      ========================================================================== */
+.navegacao-etapas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+  padding-top: 30px;
+}
+
+.btn-anterior,
+.btn-proximo,
+.criar-btn-enviar {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-anterior:hover,
+.btn-proximo:hover,
+.criar-btn-enviar:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.btn-anterior {
+  background-color: var(--cor-cinza-claro);
+  color: var(--cor-branca);
+}
+
+.btn-anterior:hover {
+  background-color: #5a6268;
+}
+
+.btn-proximo {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branca);
+}
+
+.btn-proximo:hover {
+  background-color: #0056b3;
+}
+
+.criar-btn-enviar {
+  background-color: var(--cor-sucesso);
+  color: var(--cor-branca);
+}
+
+.criar-btn-enviar:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.criar-btn-enviar:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+.alerta-amarelo {
+  background-color: #ffcdcd;
+  /* Cor de fundo amarela clara */
+  color: #850404;
+  /* Cor do texto amarelo escuro */
+  border: 1px solid #ffbaba;
+  /* Borda amarela */
+  border-radius: 5px;
+  /* Bordas arredondadas */
+  padding: 15px;
+  /* Espaçamento interno */
+  margin-bottom: 20px;
+  /* Espaço abaixo do balão */
+}
+
+.alerta-amarelo a {
+  color: #850404;
+  /* Cor azul escura */
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.campo-valor-final {
+  background-color: #f0f0f0;
+  /* Cor de fundo para indicar que é só leitura */
+  cursor: default;
+  /* Altera o cursor para indicar que não é editável */
+}
+
+/* loading */
+
+.criar-btn-enviar {
+  /* Adicionamos isso para centralizar o spinner dentro do botão */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  /* Garante uma altura mínima para o botão */
+  gap: 10px;
+}
+
+.loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  /* Cor do círculo base */
+  border-top-color: #ffffff;
+  /* Cor da parte que gira */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* Estilo para o novo botão de doação direta */
+.btn-doacao-direta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 300px;
+  /* Limita a largura para um visual mais limpo */
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #28a745;
+  /* Verde discreto */
+  border: none;
+  border-radius: 5px;
+  /* Bordas levemente arredondadas */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-doacao-direta:hover {
+  background-color: #218838;
+  /* Um verde um pouco mais escuro ao passar o mouse */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-doacao-direta:disabled {
+  background-color: #e9ecef;
+  /* Cinza claro para indicar que está desativado */
+  color: #6c757d;
+  /* Texto cinza escuro */
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   MODAL DE SUCESSO (FECHAMENTO AUTOMÁTICO)
+   ========================================================================== */
+.criar-modal-sucesso {
+  text-align: center;
+  padding: 2.5rem;
+  max-width: 450px;
+  animation: criar-modal-aparecer 0.3s ease-out;
+}
+
+@keyframes criar-modal-aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.criar-modal-sucesso-conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.criar-modal-sucesso-imagem {
+  width: 180px;
+  height: 185px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.criar-modal-sucesso-titulo {
+  color: #28a745;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.criar-modal-sucesso-mensagem {
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  color: #666;
+}
+
+.criar-modal-sucesso-progresso {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+}
+
+.criar-modal-sucesso-barra {
+  height: 100%;
+  background: #28a745;
+  animation: criar-modal-progresso 3s linear forwards;
+}
+
+@keyframes criar-modal-progresso {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0%;
+  }
+}
+
+/* Remove o botão OK do modal de sucesso */
+.criar-modal-sucesso .criar-modal-botoes {
+  display: none;
+}
+
+.observacao-doacao{
+  color: #ada30e;
+}
+
+/* ========================
+   MODAL DE SUCESSO - EDITAR EVENTO
+======================== */
+.editarEvento-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.editarEvento-modal {
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 400px;
+  animation: editarEvento-modal-appear 0.3s ease-out;
+  overflow: hidden;
+}
+
+@keyframes editarEvento-modal-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.editarEvento-modal-content {
+  padding: 30px 25px 25px;
+  text-align: center;
+  position: relative;
+}
+
+.editarEvento-modal-icon {
+  width: 70px;
+  height: 70px;
+  background: #10b981;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: white;
+  font-size: 28px;
+  animation: editarEvento-modal-icon-bounce 0.5s ease-out;
+}
+
+@keyframes editarEvento-modal-icon-bounce {
+  0% {
+    transform: scale(0);
+  }
+
+  60% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.editarEvento-modal-title {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.editarEvento-modal-message {
+  margin: 0 0 25px 0;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.editarEvento-modal-botoes {
+  display: flex;
+  justify-content: center;
+}
+
+.editarEvento-modal-btn-entendi {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.editarEvento-modal-btn-entendi:hover {
+  background: #059669;
+}
+
+/* ==========================================================================
+   TELA DE BLOQUEIO / AÇÃO NECESSÁRIA (EARLY RETURN)
+   ========================================================================== */
+.bloqueio-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh; /* Ocupa boa parte da tela para centralizar */
+  padding: 20px;
+  background-color: var(--cor-fundo);
+}
+
+.bloqueio-container {
+  background-color: var(--cor-branca);
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+  border-top: 5px solid var(--cor-primaria); /* Detalhe azul no topo */
+  animation: bloqueio-aparecer 0.4s ease-out;
+}
+
+.bloqueio-img {
+  width: 90px;
+  height: auto;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.bloqueio-container h2 {
+  font-size: 1.8rem;
+  color: var(--cor-cinza-escuro);
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.bloqueio-container p {
+  font-size: 1.05rem;
+  color: var(--cor-cinza-claro);
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.btn-ir-perfil {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branca);
+  padding: 14px 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-ir-perfil:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2);
+}
+
+/* ==========================================================================
+   ESTILO CUSTOMIZADO PARA O TOGGLE DE MEIA-ENTRADA
+   ========================================================================== */
+.toggle-meia-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #f8fbff;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #e1e9f5;
+  margin: 15px 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-meia-wrapper:hover {
+  background-color: #f0f6ff;
+  border-color: #ccdfff;
+}
+
+/* Esconde o checkbox original */
+.toggle-meia-input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 44px;
+  height: 24px;
+  background-color: #ccc;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+/* A "bolinha" do switch */
+.toggle-meia-input::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estado Ativado */
+.toggle-meia-input:checked {
+  background-color: #0969fb; /* Sua cor primária */
+}
+
+.toggle-meia-input:checked::before {
+  transform: translateX(20px);
+}
+
+.toggle-meia-texto {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+  user-select: none;
+}
+
+/* Animação suave para não aparecer de soco na tela */
+@keyframes bloqueio-aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============ CORREÇÕES ESPECÍFICAS PARA MOBILE - CRIAR EVENTOS ============ */
+
+@media (max-width: 768px) {
+  /* Container principal das informações básicas */
+  .informacoes-basicas-container {
+    padding: 20px 15px;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Título "1. Informações básicas" */
+  .criar-Informaçao h2 {
+    font-size: 1.4rem;
+    text-align: left;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  /* Texto de campos obrigatórios */
+  .informacoes-basicas-container p {
+    font-size: 0.9rem;
+    text-align: left;
+    margin: 0 0 25px 0;
+    color: #e74c3c;
+    font-weight: 500;
+    line-height: 1.4;
+    padding: 0;
+  }
+
+  .criar-titulo {
+    display: none;
+  }
+
+  /* Campos do formulário */
+  .campo {
+    margin-bottom: 25px;
+    width: 100%;
+  }
+
+  .campo label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+    line-height: 1.4;
+  }
+
+  .campo input,
+  .campo select {
+    width: 100%;
+    padding: 14px 12px;
+    font-size: 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fff;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+
+  .campo input:focus,
+  .campo select:focus {
+    outline: none;
+    border-color: #0969fb;
+    box-shadow: 0 0 0 3px rgba(9, 105, 251, 0.1);
+  }
+
+  /* Placeholder dos inputs */
+  .campo input::placeholder {
+    color: #999;
+    font-size: 14px;
+  }
+
+  /* Upload de imagem */
+  .upload-imagem {
+    width: 100%;
+    height: 140px;
+    border: 2px dashed #e0e0e0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fafafa;
+    transition: all 0.3s ease;
+  }
+
+  .upload-imagem:hover {
+    border-color: #0969fb;
+    background: #f0f7ff;
+  }
+
+  .upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .upload-placeholder svg {
+    color: #0969fb;
+    margin-bottom: 10px;
+  }
+
+  .upload-placeholder p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: #666;
+    font-weight: 500;
+  }
+
+  /* Select de categoria */
+  .campo select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  /* Input file escondido */
+  .input-file {
+    display: none;
+  }
+
+  /* Preview da imagem */
+  .image-preview-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .image-preview {
+    max-height: 80px;
+    max-width: 120px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  .image-name {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 8px;
+    text-align: center;
+    word-break: break-all;
+  }
+
+  .remove-image-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.7rem;
+  }
+
+  /* Mensagens de erro */
+  .mensagem-erro {
+    display: block;
+    font-size: 0.8rem;
+    color: #e74c3c;
+    margin-top: 5px;
+    font-weight: 500;
+  }
+
+  .erro-asterisco {
+    color: #e74c3c;
+  }
+
+  .erro-campo {
+    border-color: #e74c3c !important;
+    background-color: #fef7f7;
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 480px) {
+  .informacoes-basicas-container {
+    padding: 15px 12px;
+  }
+
+  .criar-Informaçao h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+
+  .informacoes-basicas-container p {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+
+  .campo {
+    margin-bottom: 20px;
+  }
+
+  .campo label {
+    font-size: 0.95rem;
+  }
+
+  .campo input,
+  .campo select {
+    padding: 12px 10px;
+    font-size: 15px;
+  }
+
+  .upload-imagem {
+    height: 120px;
+  }
+
+  .upload-placeholder {
+    padding: 15px;
+  }
+
+  .upload-placeholder p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .informacoes-basicas-container {
+    padding: 12px 10px;
+  }
+
+  .criar-Informaçao h2 {
+    font-size: 1.2rem;
+  }
+
+  .campo input,
+  .campo select {
+    padding: 11px 9px;
+  }
+}
+
+/* Garante que o layout não quebre */
+@media (max-width: 768px) {
+  .criar-form {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .informacoes-basicas-container {
+    max-width: 100%;
+  }
+}

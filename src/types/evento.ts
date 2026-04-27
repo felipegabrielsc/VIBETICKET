@@ -1,0 +1,30 @@
+export type EventoStatus = "em_analise" | "aprovado" | "rejeitado" | "em_reanalise";
+
+export interface Evento {
+  _id: string;
+  nome: string;
+  imagem: string;
+  imagemDescricao?: string;
+  lotes: any[]; 
+  categoria: string;
+  descricao: string;
+  rua: string;
+  cidade: string;
+  estado: string;
+  linkMaps: string;
+  dataInicio: string;
+  horaInicio: string;
+  horaTermino: string;
+  dataFim?: string;
+  valorIngressoInteira?: number;
+  valorIngressoMeia?: number;
+  quantidadeInteira?: number;
+  quantidadeMeia?: number;
+  status: EventoStatus;
+  temMeia?: boolean;
+  querDoar?: boolean;
+  valorDoacao?: number;
+  criadoPor: string;
+  dataInicioVendas: string;
+  dataFimVendas: string;
+}
