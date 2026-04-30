@@ -9,6 +9,7 @@ import { IngressoCard } from '../../components/sections/User/IngressoCard/Ingres
 import ModalAviso from '../../components/sections/User/ModalAviso/ModalAviso';
 import ModalAvisoEmail from '../../components/ui/ModalAvisoEmail/ModalAvisoEmail';
 import VoltarParaInicio from '../../components/layout/VoltarParaInicio/VoltarParaInicio';
+import { ModalTransferencia } from '../../components/sections/User/ModalTransferencia/ModalTransferencia';
 
 // Hooks e tipos
 import { useAuth } from '../../Hook/AuthContext';
@@ -49,6 +50,10 @@ const MeusIngressos: React.FC = () => {
     const [isSendingEmail, setIsSendingEmail] = useState(false);
     const [isReembolsando, setIsReembolsando] = useState(false);
     const [pedidoParaReembolsar, setPedidoParaReembolsar] = useState<string | null>(null);
+
+    const [transferModalOpen, setTransferModalOpen] = useState(false);
+    const [ingressoParaTransferir, setIngressoParaTransferir] = useState<Ingresso | null>(null);
+    const [isTransferindoProcessando, setIsTransferindoProcessando] = useState(false);
 
 
     // EFFECTS E INICIALIZAÇÕES
@@ -198,6 +203,41 @@ const MeusIngressos: React.FC = () => {
         }
     };
 
+    // ==========================================
+    // FUNÇÕES DE TRANSFERÊNCIA
+    // ==========================================
+    const handleAbrirTransferencia = (ingresso: Ingresso) => {
+        setIngressoParaTransferir(ingresso);
+        setTransferModalOpen(true);
+    };
+
+    const handleConfirmarTransferencia = async (dadosTransferencia: any) => {
+        setIsTransferindoProcessando(true);
+        try {
+            // 🚧 AQUI ENTRARÁ A ROTA DO BACKEND QUE VAMOS CRIAR NA PRÓXIMA ETAPA!
+            console.log("DADOS PRONTOS PARA O BACKEND:", dadosTransferencia);
+            
+            // Simulação de sucesso temporária para testarmos a UI
+            setTimeout(() => {
+                setTransferModalOpen(false);
+                setModalAvisoMensagem({ 
+                    title: 'Tudo pronto!', 
+                    message: 'O frontend já está empacotando os dados corretamente. Na próxima etapa, vamos ligar isso ao Mercado Pago!' 
+                });
+                setModalAvisoOpen(true);
+                setIsTransferindoProcessando(false);
+            }, 1000);
+
+        } catch (err: any) {
+            setModalAvisoMensagem({
+                title: 'Erro na Transferência',
+                message: err.response?.data?.message || 'Ocorreu um erro desconhecido.'
+            });
+            setModalAvisoOpen(true);
+            setIsTransferindoProcessando(false);
+        }
+    };
+
 
     // FUNÇÕES AUXILIARES
     // --- Contadores para os filtros --- //
@@ -333,6 +373,7 @@ const MeusIngressos: React.FC = () => {
                                 isSendingEmail={isSendingEmail}
                                 onReembolsar={handleAbrirConfirmacaoReembolso}
                                 isReembolsando={isReembolsando}
+                                onTransferir={handleAbrirTransferencia}
                             />
                         ))}
                     </div>
@@ -369,6 +410,16 @@ const MeusIngressos: React.FC = () => {
                 >
                     <p>{modalAvisoMensagem.message}</p>
                 </ModalAviso>
+
+                {ingressoParaTransferir && (
+                    <ModalTransferencia
+                        isOpen={transferModalOpen}
+                        onClose={() => setTransferModalOpen(false)}
+                        ingresso={ingressoParaTransferir}
+                        onSubmit={handleConfirmarTransferencia}
+                        isLoading={isTransferindoProcessando}
+                    />
+                )}
             </div>
         </>
     );

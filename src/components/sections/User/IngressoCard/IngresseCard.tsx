@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Ingresso } from '../../../../types/Ingresso';
-import { FiMail, FiDownload, FiXCircle, FiLoader } from 'react-icons/fi';
+import { FiMail, FiDownload, FiXCircle, FiLoader, FiSend } from 'react-icons/fi';
 import { Ticket } from '../Ticket/Ticket';
 import './IngressoCard.css';
 
@@ -20,6 +20,7 @@ interface Props {
   isSendingEmail: boolean;
   onReembolsar: (pedidoId: string) => void;
   isReembolsando: boolean;
+  onTransferir?: (ingresso: Ingresso) => void;
 }
 
 // =============================================================================
@@ -35,12 +36,12 @@ const formatarData = (isoDateString?: string): string => {
   if (!isoDateString || new Date(isoDateString).toString() === 'Invalid Date') {
     return 'Data Indisponível';
   }
-  
+
   try {
     const data = new Date(isoDateString);
     return data.toLocaleDateString('pt-BR', {
       day: '2-digit',
-      month: '2-digit', 
+      month: '2-digit',
       year: 'numeric',
       timeZone: 'America/Sao_Paulo'
     });
@@ -69,7 +70,7 @@ const formatarLocal = (evento?: Ingresso['eventoId']): string => {
   if (parts.length === 0) return 'Local não detalhado';
 
   let localString = '';
-  
+
   // Formatação especial quando temos cidade e estado
   if (parts.length > 1 && evento.cidade && evento.estado) {
     localString = parts.slice(0, -2).join(', ');
@@ -92,7 +93,8 @@ export const IngressoCard: React.FC<Props> = ({
   onSendEmail,
   isSendingEmail,
   onReembolsar,
-  isReembolsando
+  isReembolsando,
+  onTransferir
 }) => {
   // ===========================================================================
   // ESTADOS E HOOKS
@@ -106,17 +108,17 @@ export const IngressoCard: React.FC<Props> = ({
 
   const evento = ingresso.eventoId;
   const comprovanteId = ingresso.pedidoId || ingresso.id;
-  
+
   // Verifica se o ingresso está ativo (status 'Pago')
   const isTicketActive = ingresso.status === 'Pago';
-  
+
   // Dados formatados para exibição
   const dataCompraFormatada = formatarData(ingresso.createdAt);
   const dataEventoFormatada = formatarData(evento?.dataInicio);
   const localEventoFormatado = formatarLocal(evento);
   const nomeEvento = evento?.nome || 'Nome do Evento Indisponível';
   const eventoIdQr = evento?._id || 'evento_invalido';
-  
+
   // Dados para gerar QR Code
   const qrData = `ingressoId=${ingresso.id};pedidoId=${ingresso.pedidoId || 'N/A'};eventoId=${eventoIdQr};status=${ingresso.status}`;
 
@@ -125,6 +127,7 @@ export const IngressoCard: React.FC<Props> = ({
   const dataLimite = new Date(dataCompra.getTime() + 7 * 24 * 60 * 60 * 1000);
   const agora = new Date();
   const podeReembolsar = isTicketActive && (agora < dataLimite);
+  const podeTransferir = isTicketActive && !ingresso.isTransferindo;
 
   // Classes CSS dinâmicas baseadas no status
   const cardStatusClass = `IngressoCard--${ingresso.status?.toLowerCase() || 'pendente'}`;
@@ -166,7 +169,7 @@ export const IngressoCard: React.FC<Props> = ({
       pdf.setFontSize(14);
       pdf.setTextColor('#2d3748');
       pdf.text('COMPROVANTE', MARGIN, currentY);
-      
+
       // ID alinhado à direita
       const idText = `#${comprovanteId}`;
       pdf.setFontSize(8);
@@ -174,7 +177,7 @@ export const IngressoCard: React.FC<Props> = ({
       const idX = A6_WIDTH - MARGIN - pdf.getTextWidth(idText);
       pdf.setTextColor('#4a5568');
       pdf.text(idText, idX, currentY);
-      
+
       currentY += 10;
       pdf.setDrawColor('#e2e8f0');
       pdf.line(MARGIN, currentY, A6_WIDTH - MARGIN, currentY);
@@ -185,7 +188,7 @@ export const IngressoCard: React.FC<Props> = ({
       pdf.setTextColor('#a0aec0');
       pdf.text('NOME DO EVENTO', MARGIN, currentY);
       currentY += 5;
-      
+
       pdf.setFontSize(12);
       pdf.setFont('helvetica', 'bold');
       pdf.setTextColor('#2d3748');
@@ -207,14 +210,14 @@ export const IngressoCard: React.FC<Props> = ({
         pdf.setFont('helvetica', 'normal');
         pdf.setTextColor('#a0aec0');
         pdf.text(label, x, y);
-        
+
         // Valor
         pdf.setFontSize(9);
         pdf.setFont('helvetica', 'bold');
         pdf.setTextColor('#4a5568');
         const lines = pdf.splitTextToSize(value, maxWidth);
         pdf.text(lines, x, y + 4);
-        
+
         return y + 4 + lines.length * 4;
       };
 
@@ -239,14 +242,14 @@ export const IngressoCard: React.FC<Props> = ({
         pdf.setFont('helvetica', 'normal');
         pdf.setTextColor('#a0aec0');
         pdf.text(label, x, y);
-        
+
         // Valor
         pdf.setFontSize(8.5);
         pdf.setFont('helvetica', 'bold');
         pdf.setTextColor(color);
         const valueLines = pdf.splitTextToSize(value, colWidth - 1);
         pdf.text(valueLines, x, y + 3);
-        
+
         return y + 3 + (valueLines.length * 3.5);
       };
 
@@ -283,7 +286,7 @@ export const IngressoCard: React.FC<Props> = ({
       pdf.setFont('helvetica', 'bold');
       pdf.setTextColor(statusColorText);
       pdf.text(statusText, xPositions[3] + 2, currentY + 5);
-      
+
       lineHeights.push(currentY + 10);
       currentY = Math.max(...lineHeights) + 5;
 
@@ -304,7 +307,7 @@ export const IngressoCard: React.FC<Props> = ({
 
       // Salva o PDF
       pdf.save(`ingresso-${nomeEvento.replace(/[^a-zA-Z0-9]/g, '_')}-${comprovanteId}.pdf`);
-      
+
     } catch (error) {
       console.error('Erro ao gerar PDF:', error);
       alert('Erro ao gerar PDF. Verifique o console.');
@@ -408,12 +411,33 @@ export const IngressoCard: React.FC<Props> = ({
           {/* AÇÕES */}
           <div className="IngressoCard-ticket-actions" onClick={(e) => e.stopPropagation()}>
 
+            {/* Mensagem de Transferência em Andamento */}
+            {ingresso.isTransferindo && (
+              <div style={{ width: '100%', textAlign: 'center', padding: '10px', backgroundColor: '#fffbeb', color: '#b45309', borderRadius: '8px', border: '1px solid #fef3c7', fontSize: '0.85rem', fontWeight: 'bold', marginBottom: '10px' }}>
+                Transferência em andamento ⏳
+              </div>
+            )}
+
+            {/* Botão Transferir */}
+            {podeTransferir && onTransferir && (
+              <button
+                className="IngressoCard-ticket-btn"
+                style={{ backgroundColor: '#10b981', color: 'white', borderColor: '#059669' }}
+                onClick={() => onTransferir(ingresso)}
+                disabled={isSendingEmail || isReembolsando}
+                aria-label="Transferir Ingresso"
+              >
+                <FiSend className="IngressoCard-ticket-btn-icon" />
+                Transferir Ingresso
+              </button>
+            )}
+
             {/* Botão Baixar PDF */}
             <button
               className="IngressoCard-ticket-btn IngressoCard-ticket-btn--secondary"
               onClick={handleGerarPdf}
-              disabled={!isTicketActive || isSendingEmail || isReembolsando}
-              aria-label={isTicketActive ? "Baixar Comprovante em PDF" : "PDF indisponível para este status"}
+              disabled={!isTicketActive || isSendingEmail || isReembolsando || ingresso.isTransferindo}
+              aria-label={isTicketActive && !ingresso.isTransferindo ? "Baixar Comprovante em PDF" : "Indisponível"}
             >
               <FiDownload className="IngressoCard-ticket-btn-icon" />
               Baixar Comprovante (PDF)

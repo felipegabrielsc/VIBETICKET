@@ -33,6 +33,7 @@ export interface Ingresso {
   tipoIngresso: 'Inteira' | 'Meia';
   valor: number;
   status: 'Pago' | 'Pendente' | 'Cancelado' | 'Recusado' | 'Reembolsado' | 'Expirado'; // <-- Adicionado 'Recusado'
+  isTransferindo?: boolean;
 
   // --- Campos REMOVIDOS (agora virão de eventoId) ---
   // nomeEvento: string;
