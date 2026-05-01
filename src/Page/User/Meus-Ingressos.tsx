@@ -21,6 +21,25 @@ import '../../styles/Meus-Ingressos.css';
 // TIPAGENS
 type FiltroStatus = 'todos' | 'pagos' | 'pendentes' | 'reembolsados' | 'expirados';
 
+interface TransferenciaRecebida {
+    _id: string;
+    tipo: 'Direta' | 'Segura';
+    quemPagaTaxa: 'Remetente' | 'Destinatario';
+    valorRevenda?: number;
+    valorTaxa: number;
+    expiresAt: string;
+    // Tipando o ingresso e o evento como opcionais para evitar o erro de 'undefined'
+    ingressoId?: {
+        _id: string;
+        eventoId?: {
+            _id: string;
+            nome: string;
+            imagem: string;
+            dataInicio: string;
+            localEvento: string;
+        }
+    }
+}
 
 const MeusIngressos: React.FC = () => {
     // HOOKS E CONFIGURAÇÕES
@@ -55,6 +74,10 @@ const MeusIngressos: React.FC = () => {
     const [ingressoParaTransferir, setIngressoParaTransferir] = useState<Ingresso | null>(null);
     const [isTransferindoProcessando, setIsTransferindoProcessando] = useState(false);
 
+    const [transferenciasPendentes, setTransferenciasPendentes] = useState<TransferenciaRecebida[]>([]);
+    const [isAceitando, setIsAceitando] = useState(false);
+    const [isRejeitando, setIsRejeitando] = useState(false);
+
 
     // EFFECTS E INICIALIZAÇÕES
     // --- Effect para buscar ingressos --- //
@@ -68,13 +91,26 @@ const MeusIngressos: React.FC = () => {
                 const response = await api.get('/api/ingressos/user');
                 const data = response.data;
 
-                const ingressosMapeados = data.map((item: any) => ({
-                    ...item,
-                    id: item._id,
-                    eventoId: item.eventoId || {}
-                }));
+                const ingressosMapeados = data.map((item: any) => {
+                    const evento = item.eventoId || {};
+                    let statusAtual = item.status;
+                    
+                    if (evento.status === 'finalizado' && statusAtual === 'Pago') {
+                        statusAtual = 'Expirado';
+                    }
+                    return {
+                        ...item,
+                        id: item._id,
+                        eventoId: evento,
+                        status: statusAtual
+                    };
+
+                });
                 setIngressos(ingressosMapeados);
                 setIngressosFiltrados(ingressosMapeados);
+
+                const respTransfer = await api.get('/api/transferencias/recebidas');
+                setTransferenciasPendentes(respTransfer.data);
 
             } catch (err: any) {
                 console.error("Erro detalhado ao buscar ingressos:", err);
@@ -214,27 +250,91 @@ const MeusIngressos: React.FC = () => {
     const handleConfirmarTransferencia = async (dadosTransferencia: any) => {
         setIsTransferindoProcessando(true);
         try {
-            // 🚧 AQUI ENTRARÁ A ROTA DO BACKEND QUE VAMOS CRIAR NA PRÓXIMA ETAPA!
-            console.log("DADOS PRONTOS PARA O BACKEND:", dadosTransferencia);
-            
-            // Simulação de sucesso temporária para testarmos a UI
-            setTimeout(() => {
-                setTransferModalOpen(false);
-                setModalAvisoMensagem({ 
-                    title: 'Tudo pronto!', 
-                    message: 'O frontend já está empacotando os dados corretamente. Na próxima etapa, vamos ligar isso ao Mercado Pago!' 
+            // 1. Dispara os dados para a nossa nova rota no Backend
+            const response = await api.post('/api/transferencias/iniciar', dadosTransferencia);
+
+            setTransferModalOpen(false);
+
+            // 2. Atualiza o ingresso na tela instantaneamente para colocar o "cadeado"
+            setIngressos(prevIngressos =>
+                prevIngressos.map(ing =>
+                    ing.id === dadosTransferencia.ingressoId
+                        ? { ...ing, isTransferindo: true }
+                        : ing
+                )
+            );
+
+            // 3. Roteamento do Pagamento
+            if (response.data.linkPagamento) {
+                // Se a taxa for por conta do Remetente (Gratuita), manda ele pro Mercado Pago
+                window.location.href = response.data.linkPagamento;
+            } else {
+                // Se for Segura ou por conta do Destinatário, mostra o aviso
+                setModalAvisoMensagem({
+                    title: 'Transferência Iniciada!',
+                    message: 'O ingresso foi bloqueado temporariamente. O destinatário agora precisa aceitar e pagar a taxa para concluir a transferência.'
                 });
                 setModalAvisoOpen(true);
-                setIsTransferindoProcessando(false);
-            }, 1000);
+            }
+
+        } catch (err: any) {
+            // Aqui é onde o erro das 2 horas (ou qualquer outro) vai aparecer para o usuário!
+            setModalAvisoMensagem({
+                title: 'Erro na Transferência',
+                message: err.response?.data?.message || err.response?.data?.error || 'Ocorreu um erro desconhecido.'
+            });
+            setModalAvisoOpen(true);
+        } finally {
+            setIsTransferindoProcessando(false);
+        }
+    };
+
+    const handleAceitarTransferencia = async (transferenciaId: string) => {
+        setIsAceitando(true);
+        try {
+            const response = await api.post(`/api/transferencias/aceitar/${transferenciaId}`);
+
+            if (response.data.exigePagamento) {
+                // O destinatário precisa pagar a taxa ou o ingresso! Joga pro Mercado Pago.
+                window.location.href = response.data.linkPagamento;
+            } else {
+                // Era gratuita e o remetente já pagou a taxa. O ingresso já é dele!
+                setModalAvisoMensagem({ title: 'Sucesso!', message: 'O ingresso agora é seu e já está na sua carteira!' });
+                setModalAvisoOpen(true);
+
+                // Recarrega a página para o ingresso novo aparecer na lista
+                setTimeout(() => window.location.reload(), 2000);
+            }
+        } catch (err: any) {
+            setModalAvisoMensagem({
+                title: 'Erro',
+                message: err.response?.data?.message || err.response?.data?.error || 'Erro ao aceitar transferência.'
+            });
+            setModalAvisoOpen(true);
+        } finally {
+            setIsAceitando(false);
+        }
+    };
+
+    const handleRejeitarTransferencia = async (transferenciaId: string) => {
+        setIsRejeitando(true);
+        try {
+            await api.post(`/api/transferencias/rejeitar/${transferenciaId}`);
+
+            setModalAvisoMensagem({ title: 'Transferência Rejeitada', message: 'O ingresso foi devolvido ao remetente.' });
+            setModalAvisoOpen(true);
+
+            // Remove a transferência da tela instantaneamente
+            setTransferenciasPendentes(prev => prev.filter(t => t._id !== transferenciaId));
 
         } catch (err: any) {
             setModalAvisoMensagem({
-                title: 'Erro na Transferência',
-                message: err.response?.data?.message || 'Ocorreu um erro desconhecido.'
+                title: 'Erro',
+                message: err.response?.data?.message || 'Erro ao rejeitar transferência.'
             });
             setModalAvisoOpen(true);
-            setIsTransferindoProcessando(false);
+        } finally {
+            setIsRejeitando(false);
         }
     };
 
@@ -295,6 +395,39 @@ const MeusIngressos: React.FC = () => {
                 <div className="meus-ingressos-header">
                     <h1 className="meus-ingressos-titulo">Meus Ingressos</h1>
                 </div>
+                {transferenciasPendentes.length > 0 && (
+                    <div style={{ padding: '16px', margin: '0 16px 20px 16px', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '12px' }}>
+                        <h3 style={{ color: '#1e3a8a', margin: '0 0 12px 0', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            🎟️ Você recebeu ingressos!
+                        </h3>
+                        {transferenciasPendentes.map(trans => (
+                            <div key={trans._id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#ffffff', padding: '12px', borderRadius: '8px', border: '1px solid #e5e7eb', marginBottom: '8px' }}>
+                                <div>
+                                    <strong style={{ display: 'block', color: '#111827' }}>{trans.ingressoId?.eventoId?.nome || 'Ingresso de Evento'}</strong>
+                                    <span style={{ fontSize: '0.8rem', color: '#6b7280' }}>
+                                        {trans.tipo === 'Direta' ? 'Transferência Gratuita' : 'Venda Segura'}
+                                        {trans.quemPagaTaxa === 'Destinatario' ? ' (Requer Pagamento)' : ' (Taxa Paga)'}
+                                    </span>
+                                </div>
+                                <button
+                                    onClick={() => handleRejeitarTransferencia(trans._id)}
+                                    disabled={isRejeitando || isAceitando}
+                                    style={{ backgroundColor: '#fee2e2', color: '#b91c1c', border: '1px solid #fca5a5', padding: '8px 16px', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer' }}
+                                >
+                                    {isRejeitando ? '...' : 'Rejeitar'}
+                                </button>
+
+                                <button
+                                    onClick={() => handleAceitarTransferencia(trans._id)}
+                                    disabled={isAceitando}
+                                    style={{ backgroundColor: '#0969fb', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer' }}
+                                >
+                                    {isAceitando ? 'Processando...' : 'Aceitar'}
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                )}
 
                 {/* ============ FILTRO CENTRALIZADO ============ */}
                 <div className="meus-ingressos-filtro-centralizado">
