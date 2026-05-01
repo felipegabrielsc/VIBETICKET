@@ -39,6 +39,7 @@ import CarrosselAdm from './Page/Admin/CarrosselAdm';
 import AdicionarAdm from "./Page/Admin/AdicionarAdm";
 
 import ScrollToTop from './components/ui/ScrollToTop/ScrollToTop';
+import VerificarEmail from './Page/Auth/VerificarEmail';
 // ==================================================================
 // COMPONENTES DE LAYOUT (Estes permanecem iguais)
 // ==================================================================
@@ -93,6 +94,7 @@ function AppRoutes() {
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
             <Route path="/duvidas" element={<Duvidas />} />
+            <Route path="/verificar-email/:token" element={<VerificarEmail />} />
 
             {/* 🚀 ROTA DE CALLBACK ADICIONADA AQUI */}
             <Route path="/auth/callback" element={<AuthCallback />} />

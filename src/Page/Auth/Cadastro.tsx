@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import api from "../../services/api";
@@ -17,6 +17,8 @@ import logo1 from "../../assets/logoEmail.png";
 import googleIcon from "../../assets/logo-google.png";
 import facebookIcon from "../../assets/logo-facebook.png";
 import IndicadorSenha from "../../components/ui/IndicadorSenha/IndicadorSenha";
+
+import axios from 'axios';
 
 interface FormData {
   nome: string;
@@ -151,12 +153,47 @@ const Cadastro: React.FC = () => {
     }
   };
 
+  // --- Robô de Auto-Login (Polling) --- //
+  useEffect(() => {
+    let intervalo: NodeJS.Timeout;
+
+    if (aguardandoVerificacao) {
+      intervalo = setInterval(async () => {
+        try {
+          // 🔥 USAMOS O AXIOS PURO PARA FUGIR DO INTERCEPTOR GLOBAL
+          const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
+          const response = await axios.post(`${apiUrl}/api/users/login`, {
+            email: formData.email,
+            senha: formData.senha
+          }, {
+            // ⬅️ CRUCIAL: Garante que o PC aceite e salve o Cookie HttpOnly quando o login der certo!
+            withCredentials: true
+          });
+
+          if (response.status === 200) {
+            clearInterval(intervalo);
+            login(response.data.user); // Usa a função do seu AuthContext
+            navigate('/Home'); // Joga o usuário para dentro!
+          }
+        } catch (error: any) {
+          // Como estamos usando o axios puro, o 401 morre aqui e não quebra a sua tela.
+          // O robô simplesmente respira e tenta de novo daqui a 5 segundos.
+        }
+      }, 5000); // Bate na porta a cada 5 segundos
+    }
+
+    return () => {
+      if (intervalo) clearInterval(intervalo);
+    };
+  }, [aguardandoVerificacao, formData.email, formData.senha, login, navigate]);
+
   // Tela de confirmação de email
   if (aguardandoVerificacao) {
     return (
       <>
         {/* Botão Voltar para Início no canto superior esquerdo */}
-        <div 
+        <div
           className="login-voltarParaInicio"
           onClick={handleVoltarInicio}
           onKeyPress={(e) => e.key === 'Enter' && handleVoltarInicio()}
@@ -191,7 +228,7 @@ const Cadastro: React.FC = () => {
   return (
     <>
       {/* Botão Voltar para Início no canto superior esquerdo */}
-      <div 
+      <div
         className="login-voltarParaInicio"
         onClick={handleVoltarInicio}
         onKeyPress={(e) => e.key === 'Enter' && handleVoltarInicio()}
@@ -297,13 +334,13 @@ const Cadastro: React.FC = () => {
                       <div className="modal-header">
                         <h3>Termos de Uso</h3>
                       </div>
-                      
+
                       <button className="close-button" onClick={fecharModal}>&times;</button>
-                      
+
                       <div className="modal-body">
                         <TermosContent onClose={fecharModal} />
                       </div>
-                      
+
                       <div className="modal-footer">
                         <p style={{ fontSize: '14px', color: '#666', textAlign: 'center' }}>
                           Ao clicar em "Concordo", você aceita nossos termos e condições
